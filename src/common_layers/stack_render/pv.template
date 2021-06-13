@@ -1,0 +1,76 @@
+version: '3'
+services:
+  binding_manager:
+    image: binding_manager_service
+    depends_on:
+      - "logger"
+    environment:
+      VERIFIERS: '{{verifier_list}}'
+      {% if exp %}LOGICAL_EXP: '{{exp}}' {% endif %}
+      LOGGER_ADDR: logger:80
+      PR_GATEWAY: pr_gateway:80
+    networks:
+      - net
+
+  mt_manager:
+    image: mt_manager_service
+    volumes:
+      - /dev/shm/pv.key:/dev/shm/pv.key
+      - ./pv.crt:/dev/shm/pv.crt
+    environment:
+      BM_ADDR: binding_manager:80
+      PR_GATEWAY: pr_gateway:80
+    depends_on:
+      - "binding_manager"
+      - "logger"
+    networks:
+      - net
+
+  user_gateway:
+    image: user_gateway_service
+    ports:
+# in future, to replace with 443
+      - 3000:3000
+    environment:
+      BM_ADDR: binding_manager:80
+      MT_ADDR: mt_manager:80
+    depends_on:
+      - "binding_manager"
+      - "mt_manager"
+      - "logger"
+    networks:
+      - net
+
+  pr_gateway:
+    image: pr_gateway_service
+    volumes:
+      - ./pv.config:/pv.config
+      - /dev/shm/pv.key:/dev/shm/pv.key
+      - ./pv.crt:/dev/shm/pv.crt
+      - ./root_ca.crt:/dev/shm/root_ca.crt
+    environment:
+      BM_ADDR: binding_manager:80
+    depends_on:
+      - "binding_manager"
+      - "logger"
+    networks:
+      - net
+
+  logger:
+    image: logger_service
+    networks:
+      - net
+{% for verifier, type in verifiers.items() %}
+  {{verifier}}:
+    image: {{type}}_verifier
+    environment:
+      VERIFIER_ID: {{verifier}}
+      BM_ADDR: binding_manager:80
+    depends_on:
+      - "binding_manager"
+    networks:
+      - net
+{% endfor %}
+networks:
+  net:
+

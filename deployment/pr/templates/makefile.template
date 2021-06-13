@@ -1,0 +1,11 @@
+{% for service in services %}
+{% set layer = "%s_service%s" % (service, tag) %}
+
+build_{{ layer }}:
+	tar -cjf context.tar.bz2 -C {{src_dir}} pr/ util/
+	curl --unix-socket /var/run/docker.sock -H "Content-Type:application/tar" --data-binary '@context.tar.bz2' "http://localhost/v1.41/build?t={{service}}{% if registry %}&t={{registry}}/{{service}}{% endif %}&dockerfile=pr/{{service}}/Dockerfile"
+	{% if registry %}	curl --unix-socket /var/run/docker.sock -X POST -H  "X-Registry-Auth: {}" "http://localhost/v1.41/images/{{registry}}/{{service}}/push"{% endif %}
+
+{% endfor %} 
+
+build: {{ build_services }}

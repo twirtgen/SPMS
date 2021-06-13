@@ -1,0 +1,15 @@
+Host gitolite-admin
+	Hostname 10.20.3.5
+	Port 2222
+	IdentityFile build_pipe/keys/admin
+	IdentityFile ../build_pipe/keys/admin
+	IdentityFile deployment/build_pipe/keys/admin
+	User git
+	StrictHostKeyChecking no
+
+Host gitolite
+	Hostname 10.20.3.5
+	Port 2222
+	IdentityFile build_pipe/keys/ctl
+	User git
+	StrictHostKeyChecking no

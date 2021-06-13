@@ -1,0 +1,18 @@
+FROM {% if registry %}{{ registry }}/{% endif %}{{ base_layer }}
+
+{% if packages %} 
+RUN apk add {{packages}}
+{% endif %}
+
+COPY {{ service_dir }}/requirements.txt .
+RUN pip3 install -r requirements.txt
+
+COPY {{ service_dir}}/*.py {{ service_dir }}/
+{% if utils %}
+  {% for util in utils %}
+COPY {{ util_dir }}/{{ util }} util/
+  {% endfor %}
+{% endif %}
+
+EXPOSE 80
+CMD {{ cmd }}

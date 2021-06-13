@@ -1,0 +1,329 @@
+Building with native build. Learn about native build in Compose here: https://docs.docker.com/go/compose-native-build/
+Starting root_logger_1 ... 
+Starting root_logger_1 ... done
+Starting root_binding_generator_1 ... 
+Starting root_binding_generator_1 ... done
+Starting root_binding_manager_1   ... 
+Starting root_binding_manager_1   ... done
+Starting root_pr_gateway_1        ... 
+Starting root_P0_1                ... 
+Starting root_mt_manager_1        ... 
+Starting root_P0_1                ... done
+Starting root_pr_gateway_1        ... done
+Starting root_mt_manager_1        ... done
+Starting root_user_gateway_1      ... 
+Starting root_user_gateway_1      ... done
+Attaching to root_logger_1, root_binding_generator_1, root_binding_manager_1, root_P0_1, root_pr_gateway_1, root_mt_manager_1, root_user_gateway_1
+[33mbinding_generator_1  |[0m [2021-05-28 23:39:18 +0000] [1] [INFO] Starting gunicorn 20.0.4
+[33mbinding_generator_1  |[0m [2021-05-28 23:39:18 +0000] [1] [INFO] Listening at: http://0.0.0.0:80 (1)
+[33mbinding_generator_1  |[0m [2021-05-28 23:39:18 +0000] [1] [INFO] Using worker: sync
+[33mbinding_generator_1  |[0m [2021-05-28 23:39:18 +0000] [8] [INFO] Booting worker with pid: 8
+[32mbinding_manager_1    |[0m [2021-05-28 23:39:19 +0000] [1] [INFO] Starting gunicorn 20.0.4
+[32mbinding_manager_1    |[0m [2021-05-28 23:39:19 +0000] [1] [INFO] Listening at: http://0.0.0.0:80 (1)
+[32mbinding_manager_1    |[0m [2021-05-28 23:39:19 +0000] [1] [INFO] Using worker: sync
+[32mbinding_manager_1    |[0m [2021-05-28 23:39:19 +0000] [8] [INFO] Booting worker with pid: 8
+[34mmt_manager_1         |[0m [2021-05-28 23:39:21 +0000] [1] [INFO] Starting gunicorn 20.0.4
+[34mmt_manager_1         |[0m [2021-05-28 23:39:21 +0000] [1] [INFO] Listening at: http://0.0.0.0:80 (1)
+[34mmt_manager_1         |[0m [2021-05-28 23:39:21 +0000] [1] [INFO] Using worker: sync
+[34mmt_manager_1         |[0m [2021-05-28 23:39:21 +0000] [8] [INFO] Booting worker with pid: 8
+[36;1mpr_gateway_1         |[0m [2021-05-28 23:39:21 +0000] [1] [INFO] Starting gunicorn 20.0.4
+[36;1mpr_gateway_1         |[0m [2021-05-28 23:39:21 +0000] [1] [INFO] Listening at: http://0.0.0.0:80 (1)
+[36;1mpr_gateway_1         |[0m [2021-05-28 23:39:21 +0000] [1] [INFO] Using worker: sync
+[36;1mpr_gateway_1         |[0m [2021-05-28 23:39:21 +0000] [8] [INFO] Booting worker with pid: 8
+[36;1mpr_gateway_1         |[0m Connected with result code 0
+[35mlogger_1             |[0m [2021-05-28 23:39:17 +0000] [1] [INFO] Starting gunicorn 20.0.4
+[35mlogger_1             |[0m [2021-05-28 23:39:17 +0000] [1] [INFO] Listening at: http://0.0.0.0:80 (1)
+[35mlogger_1             |[0m [2021-05-28 23:39:17 +0000] [1] [INFO] Using worker: sync
+[35mlogger_1             |[0m [2021-05-28 23:39:17 +0000] [8] [INFO] Booting worker with pid: 8
+[33;1muser_gateway_1       |[0m [2021-05-28 23:39:22 +0000] [1] [INFO] Starting gunicorn 20.0.4
+[33;1muser_gateway_1       |[0m [2021-05-28 23:39:22 +0000] [1] [INFO] Listening at: http://0.0.0.0:80 (1)
+[33;1muser_gateway_1       |[0m [2021-05-28 23:39:22 +0000] [1] [INFO] Using worker: sync
+[33;1muser_gateway_1       |[0m [2021-05-28 23:39:22 +0000] [8] [INFO] Booting worker with pid: 8
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc00'
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:39:32] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc00>
+[35mlogger_1             |[0m [2021-05-28 23:39:50] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc00>
+[35mlogger_1             |[0m [2021-05-28 23:39:55] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc00> : status <200>
+[34mmt_manager_1         |[0m perf_log, 1, 0.001252
+[34mmt_manager_1         |[0m perf_log, 1, 0.001161
+[34mmt_manager_1         |[0m perf_log, 1, 0.001187
+[34mmt_manager_1         |[0m perf_log, 1, 0.001317
+[34mmt_manager_1         |[0m perf_log, 1, 0.001223
+[34mmt_manager_1         |[0m perf_log, 1, 0.001149
+[34mmt_manager_1         |[0m perf_log, 1, 0.001181
+[34mmt_manager_1         |[0m perf_log, 1, 0.001132
+[34mmt_manager_1         |[0m perf_log, 1, 0.001248
+[34mmt_manager_1         |[0m perf_log, 1, 0.001129
+[34mmt_manager_1         |[0m perf_log, 1, 0.001106
+[34mmt_manager_1         |[0m perf_log, 1, 0.001241
+[34mmt_manager_1         |[0m perf_log, 1, 0.001148
+[34mmt_manager_1         |[0m perf_log, 1, 0.001127
+[34mmt_manager_1         |[0m perf_log, 1, 0.001100
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc01'
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:42:32] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc01>
+[34mmt_manager_1         |[0m perf_log, 1, 0.001140
+[34mmt_manager_1         |[0m perf_log, 1, 0.001245
+[34mmt_manager_1         |[0m perf_log, 1, 0.001260
+[35mlogger_1             |[0m [2021-05-28 23:42:55] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc01>
+[35mlogger_1             |[0m [2021-05-28 23:43:00] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc01> : status <200>
+[34mmt_manager_1         |[0m perf_log, 2, 0.001263
+[34mmt_manager_1         |[0m perf_log, 2, 0.001230
+[34mmt_manager_1         |[0m perf_log, 2, 0.001196
+[34mmt_manager_1         |[0m perf_log, 2, 0.001273
+[34mmt_manager_1         |[0m perf_log, 2, 0.001254
+[34mmt_manager_1         |[0m perf_log, 2, 0.001259
+[34mmt_manager_1         |[0m perf_log, 2, 0.001235
+[34mmt_manager_1         |[0m perf_log, 2, 0.001219
+[34mmt_manager_1         |[0m perf_log, 2, 0.001267
+[34mmt_manager_1         |[0m perf_log, 2, 0.001232
+[34mmt_manager_1         |[0m perf_log, 2, 0.001333
+[34mmt_manager_1         |[0m perf_log, 2, 0.001231
+[34mmt_manager_1         |[0m perf_log, 2, 0.001235
+[34mmt_manager_1         |[0m perf_log, 2, 0.001252
+[34mmt_manager_1         |[0m perf_log, 2, 0.000452
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc02'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc03'
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:45:32] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc02>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:45:32] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc03>
+[34mmt_manager_1         |[0m perf_log, 2, 0.001232
+[34mmt_manager_1         |[0m perf_log, 2, 0.001337
+[34mmt_manager_1         |[0m perf_log, 2, 0.001236
+[35mlogger_1             |[0m [2021-05-28 23:46:01] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc02>
+[35mlogger_1             |[0m [2021-05-28 23:46:06] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc02> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:46:06] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc03>
+[34mmt_manager_1         |[0m perf_log, 3, 0.001719
+[35mlogger_1             |[0m [2021-05-28 23:46:11] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc03> : status <200>
+[34mmt_manager_1         |[0m perf_log, 4, 0.001506
+[34mmt_manager_1         |[0m perf_log, 4, 0.001453
+[34mmt_manager_1         |[0m perf_log, 4, 0.001506
+[34mmt_manager_1         |[0m perf_log, 4, 0.001480
+[34mmt_manager_1         |[0m perf_log, 4, 0.001497
+[34mmt_manager_1         |[0m perf_log, 4, 0.001468
+[34mmt_manager_1         |[0m perf_log, 4, 0.001488
+[34mmt_manager_1         |[0m perf_log, 4, 0.001492
+[34mmt_manager_1         |[0m perf_log, 4, 0.001457
+[34mmt_manager_1         |[0m perf_log, 4, 0.001456
+[34mmt_manager_1         |[0m perf_log, 4, 0.001625
+[34mmt_manager_1         |[0m perf_log, 4, 0.001493
+[34mmt_manager_1         |[0m perf_log, 4, 0.001484
+[34mmt_manager_1         |[0m perf_log, 4, 0.001502
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc04'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc05'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc06'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc07'
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:48:32] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc04>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:48:32] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc06>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:48:32] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc05>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:48:32] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc07>
+[34mmt_manager_1         |[0m perf_log, 4, 0.001458
+[35mlogger_1             |[0m [2021-05-28 23:48:41] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc04>
+[35mlogger_1             |[0m [2021-05-28 23:48:46] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc04> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:48:46] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc06>
+[34mmt_manager_1         |[0m perf_log, 5, 0.001607
+[35mlogger_1             |[0m [2021-05-28 23:48:51] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc06> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:48:51] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc05>
+[35mlogger_1             |[0m [2021-05-28 23:48:56] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc05> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:48:56] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc07>
+[34mmt_manager_1         |[0m perf_log, 7, 0.001809
+[35mlogger_1             |[0m [2021-05-28 23:49:01] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc07> : status <200>
+[34mmt_manager_1         |[0m perf_log, 8, 0.001956
+[34mmt_manager_1         |[0m perf_log, 8, 0.002016
+[34mmt_manager_1         |[0m perf_log, 8, 0.001979
+[34mmt_manager_1         |[0m perf_log, 8, 0.001949
+[34mmt_manager_1         |[0m perf_log, 8, 0.001914
+[34mmt_manager_1         |[0m perf_log, 8, 0.001933
+[34mmt_manager_1         |[0m perf_log, 8, 0.001918
+[34mmt_manager_1         |[0m perf_log, 8, 0.001434
+[34mmt_manager_1         |[0m perf_log, 8, 0.001963
+[34mmt_manager_1         |[0m perf_log, 8, 0.001966
+[34mmt_manager_1         |[0m perf_log, 8, 0.001919
+[34mmt_manager_1         |[0m perf_log, 8, 0.001932
+[34mmt_manager_1         |[0m perf_log, 8, 0.001918
+[34mmt_manager_1         |[0m perf_log, 8, 0.001943
+[34mmt_manager_1         |[0m perf_log, 8, 0.002021
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc08'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc09'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc10'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc11'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc12'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc13'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc14'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc15'
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:51:32] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc08>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:51:32] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc09>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:51:32] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc10>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:51:32] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc11>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:51:32] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc12>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:51:33] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc13>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:51:33] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc14>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:51:33] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc15>
+[34mmt_manager_1         |[0m perf_log, 8, 0.001934
+[34mmt_manager_1         |[0m perf_log, 8, 0.001947
+[34mmt_manager_1         |[0m perf_log, 8, 0.002102
+[35mlogger_1             |[0m [2021-05-28 23:52:01] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc08>
+[35mlogger_1             |[0m [2021-05-28 23:52:06] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc08> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:52:06] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc09>
+[34mmt_manager_1         |[0m perf_log, 9, 0.002078
+[35mlogger_1             |[0m [2021-05-28 23:52:11] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc09> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:52:11] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc10>
+[35mlogger_1             |[0m [2021-05-28 23:52:16] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc10> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:52:16] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc11>
+[34mmt_manager_1         |[0m perf_log, 11, 0.002968
+[35mlogger_1             |[0m [2021-05-28 23:52:21] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc11> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:52:21] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc12>
+[35mlogger_1             |[0m [2021-05-28 23:52:26] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc12> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:52:26] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc13>
+[34mmt_manager_1         |[0m perf_log, 13, 0.002442
+[35mlogger_1             |[0m [2021-05-28 23:52:31] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc13> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:52:31] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc14>
+[35mlogger_1             |[0m [2021-05-28 23:52:36] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc14> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:52:36] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc15>
+[34mmt_manager_1         |[0m perf_log, 15, 0.002797
+[35mlogger_1             |[0m [2021-05-28 23:52:41] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc15> : status <200>
+[34mmt_manager_1         |[0m perf_log, 16, 0.002871
+[34mmt_manager_1         |[0m perf_log, 16, 0.002843
+[34mmt_manager_1         |[0m perf_log, 16, 0.002865
+[34mmt_manager_1         |[0m perf_log, 16, 0.003041
+[34mmt_manager_1         |[0m perf_log, 16, 0.002874
+[34mmt_manager_1         |[0m perf_log, 16, 0.002865
+[34mmt_manager_1         |[0m perf_log, 16, 0.002868
+[34mmt_manager_1         |[0m perf_log, 16, 0.002978
+[34mmt_manager_1         |[0m perf_log, 16, 0.002822
+[34mmt_manager_1         |[0m perf_log, 16, 0.001648
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc16'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc17'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc18'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc19'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc20'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc21'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc22'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc23'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc24'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc25'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc26'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc27'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc28'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc29'
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc30'
+[36;1mpr_gateway_1         |[0m /all b'be.michelfra.disable_cc31'
+[35mlogger_1             |[0m [2021-05-28 23:54:32] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc16>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:54:32] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc17>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:54:32] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc19>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:54:32] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc18>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:54:32] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc22>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:54:33] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc20>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:54:33] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc21>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:54:33] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc23>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:54:33] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc24>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:54:33] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc25>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:54:33] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc26>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[34mmt_manager_1         |[0m perf_log, 16, 0.001099
+[35mlogger_1             |[0m [2021-05-28 23:54:33] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc28>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:54:33] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc29>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:54:33] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc30>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:54:34] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc31>
+[33mbinding_generator_1  |[0m clang -I../../picoquic -fno-stack-protector -O2 -fno-gnu-inline-asm -emit-llvm -c congestion_algorithm_notify.c -o - | llc -march=bpf -filetype=obj -o congestion_algorithm_notify.o
+[35mlogger_1             |[0m [2021-05-28 23:54:34] [INFO] <pv.binding_manager.api> post_binding : <be.michelfra.disable_cc27>
+[35mlogger_1             |[0m [2021-05-28 23:54:41] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc16>
+[34mmt_manager_1         |[0m perf_log, 16, 0.002875
+[35mlogger_1             |[0m [2021-05-28 23:54:47] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc16> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:54:47] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc17>
+[35mlogger_1             |[0m [2021-05-28 23:54:52] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc17> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:54:52] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc19>
+[34mmt_manager_1         |[0m perf_log, 18, 0.003072
+[35mlogger_1             |[0m [2021-05-28 23:54:57] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc19> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:54:57] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc18>
+[35mlogger_1             |[0m [2021-05-28 23:55:02] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc18> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:55:02] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc22>
+[34mmt_manager_1         |[0m perf_log, 20, 0.003445
+[35mlogger_1             |[0m [2021-05-28 23:55:07] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc22> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:55:07] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc20>
+[35mlogger_1             |[0m [2021-05-28 23:55:12] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc20> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:55:12] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc21>
+[34mmt_manager_1         |[0m perf_log, 22, 0.003564
+[35mlogger_1             |[0m [2021-05-28 23:55:17] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc21> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:55:17] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc23>
+[35mlogger_1             |[0m [2021-05-28 23:55:22] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc23> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:55:22] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc24>
+[34mmt_manager_1         |[0m perf_log, 24, 0.003551
+[35mlogger_1             |[0m [2021-05-28 23:55:27] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc24> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:55:27] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc25>
+[35mlogger_1             |[0m [2021-05-28 23:55:32] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc25> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:55:32] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc26>
+[34mmt_manager_1         |[0m perf_log, 26, 0.001581
+[35mlogger_1             |[0m [2021-05-28 23:55:37] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc26> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:55:37] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc28>
+[35mlogger_1             |[0m [2021-05-28 23:55:42] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc28> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:55:42] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc29>
+[34mmt_manager_1         |[0m perf_log, 28, 0.004329
+[35mlogger_1             |[0m [2021-05-28 23:55:47] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc29> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:55:47] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc30>
+[35mlogger_1             |[0m [2021-05-28 23:55:52] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc30> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:55:52] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc31>
+[34mmt_manager_1         |[0m perf_log, 30, 0.004755
+[35mlogger_1             |[0m [2021-05-28 23:55:57] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc31> : status <200>
+[35mlogger_1             |[0m [2021-05-28 23:55:57] [INFO] <pv.binding_manager.api> get_binding : <P0> : <200> : <be.michelfra.disable_cc27>
+[35mlogger_1             |[0m [2021-05-28 23:56:02] [INFO] <pv.binding_manager.api> add_result : from <P0> for <be.michelfra.disable_cc27> : status <200>
+[34mmt_manager_1         |[0m perf_log, 32, 0.004719
+[34mmt_manager_1         |[0m perf_log, 32, 0.004811
+[34mmt_manager_1         |[0m perf_log, 32, 0.004864
+[34mmt_manager_1         |[0m perf_log, 32, 0.004828
+[34mmt_manager_1         |[0m perf_log, 32, 0.004810
+[34mmt_manager_1         |[0m perf_log, 32, 0.004822
+[34mmt_manager_1         |[0m perf_log, 32, 0.004816
+[34mmt_manager_1         |[0m perf_log, 32, 0.004832
+[34mmt_manager_1         |[0m perf_log, 32, 0.004744
+[34mmt_manager_1         |[0m perf_log, 32, 0.005290
+[34mmt_manager_1         |[0m perf_log, 32, 0.004830
+[34mmt_manager_1         |[0m perf_log, 32, 0.005120
+[34mmt_manager_1         |[0m perf_log, 32, 0.004825
+[34mmt_manager_1         |[0m perf_log, 32, 0.004910
+[34mmt_manager_1         |[0m perf_log, 32, 0.004775
+[34mmt_manager_1         |[0m perf_log, 32, 0.004821
+[34mmt_manager_1         |[0m perf_log, 32, 0.005198
+[34mmt_manager_1         |[0m perf_log, 32, 0.004731
+Stopping root_user_gateway_1      ... 
+Stopping root_mt_manager_1        ... 
+Stopping root_P0_1                ... 
+Stopping root_pr_gateway_1        ... 
+Stopping root_binding_manager_1   ... 
+Stopping root_binding_generator_1 ... 
+Stopping root_logger_1            ... 
+Stopping root_user_gateway_1      ... done
+Stopping root_pr_gateway_1        ... done
+Stopping root_P0_1                ... done
+Stopping root_mt_manager_1        ... done
+Stopping root_binding_manager_1   ... done
+Stopping root_binding_generator_1 ... done
+Stopping root_logger_1            ... done
+Gracefully stopping... (press Ctrl+C again to force)

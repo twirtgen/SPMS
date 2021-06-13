@@ -1,0 +1,86 @@
+{
+	"variables": {
+		"base_dir": "/tmp/spms/imgs",
+		"base_image": "{{user `base_dir`}}/base_layer/base_layer",
+		"output": "{{user `base_dir`}}/{{user `hostname`}}",
+		"crt_path": "../../certificates"
+	},
+	"builders": [
+		{
+			"type": "qemu",
+			"iso_url": "{{user `base_image`}}.qcow2",
+			"iso_checksum": "file:{{user `base_image`}}.sha256",
+			"output_directory": "{{user `output`}}",
+			"disk_compression": "true",
+			"disk_size": "20G",
+			"disk_image": "true",
+			"use_backing_file": "true",
+			"format": "qcow2",
+			"accelerator": "kvm",
+			"headless": "true",
+			"ssh_username": "root",
+			"ssh_password": "{{user `root_pass`}}",
+			"ssh_timeout": "30m",
+			"ssh_handshake_attempts": "30",
+			"vm_name": "{{user `hostname`}}.qcow2",
+			"net_device": "virtio-net",
+			"disk_interface": "virtio",
+			"boot_key_interval": "10ms",
+			"shutdown_command": "/sbin/poweroff",
+			"boot_wait": "10s",
+			"disable_vnc": "true"
+		}
+	],
+	"provisioners": [
+		{
+			"type": "file",
+			"source": "../configs/{{user `hostname`}}.config",
+			"destination": "/root/pv.config"
+		},
+		{
+			"type": "file",
+			"source": "docker_config.json",
+			"destination": "/etc/docker/daemon.json"
+		},
+		{
+			"type": "file",
+			"sources": "{{user `crt_path`}}/{{user `hostname`}}.pem",
+			"destination": "/root/pv.crt"
+		},
+		{
+			"type": "file",
+			"sources": "{{user `crt_path`}}/{{user `hostname`}}.key",
+			"destination": "/root/pv.key"
+		},
+		{
+			"type": "file",
+			"sources": "{{user `crt_path`}}/pr.pem",
+			"destination": "/root/pr.crt"
+		},
+		{
+			"type": "file",
+			"sources": "{{user `crt_path`}}/root_ca.pem",
+			"destination": "/root/root_ca.crt"
+		},
+		{
+			"type": "shell",
+			"inline_shebang": "/bin/sh -xe",
+			"inline": [
+				"echo {{user `hostname`}} > /etc/hostname", 
+				"apk add bash jq"
+			]
+		},
+		{
+			"type": "shell",
+			"inline_shebang": "/bin/bash -x",
+			"script": "bootstrap.sh"
+		}
+	],
+	"post-processors": [
+		{
+			"type": "checksum",
+			"checksum_types": ["sha256"],
+			"output": "{{user `output`}}/{{user `hostname`}}.{{.ChecksumType}}"
+		}
+	]
+}

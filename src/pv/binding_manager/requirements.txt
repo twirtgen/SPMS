@@ -1,0 +1,2 @@
+readerwriterlock==1.0.7
+typing-extensions==3.7.4.3

@@ -1,0 +1,26 @@
+version: '3'
+services:
+  broker:
+    image: broker
+    volumes:
+      - ./root_ca.pem:/pr/certificates/ca.pem
+      - ./pr.pem:/pr/certificates/pr.pem
+      - /tmp/pr.key:/dev/shm/key.tmp
+    ports:
+      - 8883:8883
+    networks:
+      - net
+
+  gateway:
+    image: gateway
+    volumes:
+      - ./root_ca.pem:/pr/certificates/root_ca.pem
+      - ./pr.pem:/pr/certificates/pr.pem
+      - /tmp/pr.key:/dev/shm/key.tmp
+    ports:
+      - 443:443
+    networks:
+      - net
+
+networks:
+  net:

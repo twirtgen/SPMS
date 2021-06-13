@@ -1,0 +1,46 @@
+{% for service in services %}
+{% set layer = "%s_service%s" % (service, tag) %}
+
+build_{{ layer }}:
+
+	tar -cjf context.tar.bz2 -C {{src_dir}} pv/ util/ /dev/shm/build/{{layer}}.containerfile
+	curl --unix-socket /var/run/docker.sock -H "Content-Type:application/tar" --data-binary '@context.tar.bz2' "http://localhost/v1.41/build?t={{layer}}{% if registry %}&t={{registry}}/{{layer}}{% endif %}&dockerfile=/dev/shm/build/{{layer}}.containerfile"
+	{% if registry %}	curl --unix-socket /var/run/docker.sock -X POST -H  "X-Registry-Auth: {}" "http://localhost/v1.41/images/{{registry}}/{{layer}}/push"{% endif %}
+
+{% endfor %}
+
+{% for verifier in verifiers %}
+{% set name = '%s_verifier' % verifier %}
+
+build_{{ verifier }}_verifier:
+	tar -cjf context.tar.bz2 -C {{src_dir}}/ pv/verifiers/{{verifier}} pv/verifiers/controller.py
+	curl --unix-socket /var/run/docker.sock -H "Content-Type:application/tar" --data-binary '@context.tar.bz2' "http://localhost/v1.41/build?t={{name}}{% if registry %}&t={{registry}}/{{name}}{% endif %}&dockerfile=pv/verifiers/{{verifier}}/verifier.containerfile"
+	{% if registry %}
+	curl --unix-socket /var/run/docker.sock -X POST -H  "X-Registry-Auth: {}" "http://localhost/v1.41/images/{{registry}}/{{name}}/push"
+	{% endif %}
+
+
+	#{{ builder }} pull {{ registry }}/{{ name }}
+	#{{ builder }} {{ cmd }} -t {{ name }} -f {{ src_dir }}/pv/verifiers/{{ verifier }}/verifier.containerfile {{ src_dir }}
+	{%if registry %}
+	#{{ builder }} push {{ name }} {{ registry }}/{{ name }}
+	{% endif %}
+	{% if verifier in vservices %}
+		{% for vs in vservices[verifier] %}{% set vsname = "%s_%s_service" % (verifier, vs) %}
+	tar -cjf context.tar.bz2 -C {{src_dir}}/pv/verifiers/{{verifier}} .
+	curl --unix-socket /var/run/docker.sock -H "Content-Type:application/tar" --data-binary '@context.tar.bz2' "http://localhost/v1.41/build?t={{vsname}}{% if registry %}&t={{registry}}/{{vsname}}{% endif %}&dockerfile={{vs}}.containerfile"
+
+	#{{ builder }} {{ cmd }} -t {{ vsname }} -f {{ src_dir }}/pv/verifiers/{{ verifier }}/{{ vs }}.containerfile {{ src_dir }}/pv/verifiers/{{ verifier }}
+			{% if registry %}
+	curl --unix-socket /var/run/docker.sock -X POST -H  "X-Registry-Auth: {}" "http://localhost/v1.41/images/{{registry}}/{{vsname}}/push"
+	#{{ builder }} push {{ vsname }} {{ registry }}/{{ vsname }}
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+{% endfor %}
+
+build_services: {{ build_services }}
+
+build_verifiers: {{ build_verifiers }}
+
+build: build_services build_verifiers

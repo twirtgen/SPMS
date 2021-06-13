@@ -1,0 +1,4 @@
+Hostname 172.17.0.2
+  Host gitolite
+  User git
+  IdentityFile /ctl

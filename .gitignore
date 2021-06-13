@@ -1,0 +1,15 @@
+.terraform*
+*packer_cache*
+terraform.*
+gitolite-admin
+keys/*
+admin
+deployment/build_pipe/ctl/ctl
+deployment/build_pipe/keys/ctl
+*.pub
+*.pem
+*.srl
+*.key
+*.csr
+storage_pools
+.coverage

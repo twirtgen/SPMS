@@ -1,0 +1,4 @@
+#! /bin/sh -xe
+
+#curl --unix-socket /tmp/podman.sock http://localhost/v1.40/containers/ctl/start -XPOST -s
+curl --unix-socket /var/run/docker.sock http://localhost/v1.40/containers/ctl/start -XPOST -s

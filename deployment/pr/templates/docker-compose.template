@@ -1,0 +1,24 @@
+version: '3'
+services:
+  broker:
+    image: broker
+    environment:
+      KEY_FILE: /pr/certificates/pr.key
+      KEY_PASS: azerty123
+    ports:
+      - 8883:8883
+    networks:
+      - net
+
+  gateway:
+    image: gateway
+    environment:
+      KEY_FILE: /pr/certificates/pr.key
+      KEY_PASS: azerty123
+    ports:
+      - 443:443
+    networks:
+      - net
+
+networks:
+  net:

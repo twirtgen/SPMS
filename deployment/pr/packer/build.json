@@ -1,0 +1,72 @@
+{
+	"variables": {
+		"hostname": "pr-src",
+		"base_dir": "/tmp/spms/imgs",
+		"base_image": "{{user `base_dir`}}/base_layer/base_layer",
+		"output": "{{user `base_dir`}}/{{user `hostname`}}",
+		"crt_path": "../../certificates"
+	},
+	"builders": [
+		{
+			"type": "qemu",
+			"iso_url": "{{user `base_image`}}.qcow2",
+			"iso_checksum": "file:{{user `base_image`}}.sha256",
+			"output_directory": "{{user `output`}}",
+			"disk_compression": "true",
+			"disk_image": "true",
+			"disk_size": "20G",
+			"use_backing_file": "true",
+			"format": "qcow2",
+			"accelerator": "kvm",
+			"headless": "true",
+			"ssh_username": "root",
+			"ssh_password": "{{user `root_pass`}}",
+			"ssh_timeout": "30m",
+			"ssh_handshake_attempts": "30",
+			"vm_name": "{{user `hostname`}}.qcow2",
+			"net_device": "virtio-net",
+			"disk_interface": "virtio",
+			"boot_key_interval": "10ms",
+			"shutdown_command": "/sbin/poweroff",
+			"boot_wait": "10s",
+			"disable_vnc": "true"
+		}
+	],
+	"provisioners": [
+		{
+			"type": "file",
+			"sources": ["{{user `crt_path`}}/pr.pem", "{{user `crt_path`}}/pr.key", "{{user `crt_path`}}/root_ca.pem"],
+			"destination": "/root/"
+		},
+		{
+			"type": "file",
+			"sources": "daemon.json",
+			"destination": "/etc/docker/"
+		},
+		{
+			"type": "file",
+			"sources": "../pr.config",
+			"destination": "/root/stack.config"
+		},
+		{
+			"type": "shell",
+			"inline_shebang": "/bin/sh -x",
+			"inline": [
+				"echo {{user `hostname`}} > /etc/hostname", 
+				"apk add bash jq"
+			]
+		},
+		{
+			"type": "shell",
+			"inline_shebang": "/bin/bash -x",
+			"script": "bootstrap.sh"
+		}
+	],
+	"post-processors": [
+		{
+			"type": "checksum",
+			"checksum_types": ["sha256"],
+			"output": "{{user `output`}}/{{user `hostname`}}.{{.ChecksumType}}"
+		}
+	]
+}

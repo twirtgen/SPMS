@@ -1,0 +1,65 @@
+{
+	"variables": {
+		"hostname": "base_layer",
+		"output": "/tmp/spms/imgs/{{user `hostname`}}"
+	},
+	"builders": [
+		{
+			"type": "qemu",
+			"iso_url": "http://dl-cdn.alpinelinux.org/alpine/v3.12/releases/x86_64/alpine-virt-3.12.0-x86_64.iso",
+			"iso_checksum": "sha256:fe694a34c0e2d30b9e5dea7e2c1a3892c1f14cb474b69cc5c557a52970071da5",
+			"output_directory": "{{user `output`}}",
+			"cpus": 4,
+			"memory": 2048,
+			"disk_size": "20G",
+			"disk_compression": "true",
+			"format": "qcow2",
+			"accelerator": "kvm",
+			"headless": "true",
+			"ssh_username": "root",
+			"ssh_password": "{{user `root_pass`}}",
+			"ssh_timeout": "30m",
+			"ssh_handshake_attempts": "30",
+			"vm_name": "{{user `hostname`}}.qcow2",
+			"net_device": "virtio-net",
+			"disk_interface": "virtio",
+			"http_directory": "http",
+			"boot_key_interval": "10ms",
+			"shutdown_command": "/sbin/poweroff",
+			"boot_wait": "10s",
+			"boot_command": [
+				"root<enter><wait>",
+				"ifconfig eth0 up && udhcpc -i eth0<enter><wait5>",
+				"wget http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{user `hostname`}}.config<enter><wait>",
+				"printf \"{{user `root_pass`}}\\n{{user `root_pass`}}\\ny\\n\" | setup-alpine -f {{user `hostname`}}.config ; ",
+				"mount /dev/vda3 /mnt && ",
+				"sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /mnt/etc/ssh/sshd_config && ",
+				"umount /mnt; reboot<enter>"
+			]
+		}
+	],
+	"provisioners": [
+		{
+			"type": "shell",
+			"inline_shebang": "/bin/sh -x",
+			"inline": [
+				"sed -i -e 's/nameserver [0-9.]*/nameserver 9.9.9.9/g' /etc/resolv.conf",
+				"sed -i -e 's/#http/http/g' /etc/apk/repositories",
+				"apk update",
+				"apk upgrade",
+				"apk add vim htop tcpdump nmap python3 py3-pip docker make docker-compose curl",
+				"rc-update add docker",
+				"rc-service docker start",
+				"echo 'export TERM=xterm-color' >> /etc/profile.d/locale.sh",
+				"pip3 install jinja2"
+			]
+		}
+	],
+	"post-processors": [
+		{
+			"type": "checksum",
+			"checksum_types": ["sha256"],
+			"output": "{{user `output`}}/{{user `hostname`}}.{{.ChecksumType}}"
+		}
+	]
+}
