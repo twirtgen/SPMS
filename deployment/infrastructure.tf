@@ -2,8 +2,8 @@ terraform {
  required_version = ">= 0.13"
   required_providers {
     libvirt = {
-      source  = "tmp/tmp/libvirt"
-      version = "0.6.2"
+      source  = "dmacvicar/libvirt"
+      version = "0.6.11"
     }
   }
 }
@@ -69,7 +69,7 @@ resource "null_resource" "base_layer-build" {
 cd base_layer
 if [[ ! -d /tmp/spms/imgs/base_layer ]]
 then
-  ~/packer build -var root_pass=${var.root_pass} build.json
+  packer build -var root_pass=${var.root_pass} build.json
 fi
 cd ..
     EOF
@@ -98,7 +98,7 @@ then
   ssh-keygen -N '' -f keys/ctl
   cp keys/ctl ctl
   cp keys/admin.pub gitolite/shared
-  ~/packer build -var root_pass=${var.root_pass} build.json
+  packer build -var root_pass=${var.root_pass} build.json
 fi
 cd ..
     EOF
@@ -218,7 +218,7 @@ resource "null_resource" "pr-build" {
             sleep 20
         do true; done
         cd pr/packer
-        ~/packer build -var root_pass=${var.root_pass} -var hostname=pr build.json
+        packer build -var root_pass=${var.root_pass} -var hostname=pr build.json
       fi
     EOF
   }
@@ -289,7 +289,7 @@ resource "null_resource" "pv1-build" {
         do true; done
 
         cd pv/packer
-        ~/packer build -var root_pass=${var.root_pass} -var hostname=pv1 build.json
+        packer build -var root_pass=${var.root_pass} -var hostname=pv1 build.json
       fi
     EOF
   }

@@ -81,8 +81,9 @@ In some cases, it may fail due to network errors.
 If it happens, run `terraform destroy` and relaunch the `apply` command afterwards.
 
 ```
+# Install terraform, packer, qemu-kvm, libvirt, jq
 cd deployment
-terraform apply -var="root_pass=azerty123" -var="admin_key_pass=admin_key_pass123" -var="ctl_key_pass=ctl_key_pass123" -var="root_ca_pass=azerty123" -var "pr_pass=azerty123" -var "pv1_pass=azerty123" -var "curdir=${PWD}"
+terraform apply -var "curdir=${PWD}" -var-file=infra.tfvars
 ```
 
 ## Sources
