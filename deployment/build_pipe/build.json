@@ -30,7 +30,10 @@
 			"boot_wait": "10s",
 			"disable_vnc": "true",
 			"cpus": 4,
-			"memory": 2048
+			"memory": 2048,
+			"qemu_img_args": {
+			  "create": ["-F", "qcow2"]
+			}
 		}
 	],
 	"provisioners": [

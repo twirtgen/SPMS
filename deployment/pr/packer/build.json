@@ -29,7 +29,10 @@
 			"boot_key_interval": "10ms",
 			"shutdown_command": "/sbin/poweroff",
 			"boot_wait": "10s",
-			"disable_vnc": "true"
+			"disable_vnc": "true",
+			"qemu_img_args": {
+			    "create": ["-F", "qcow2"]
+			}
 		}
 	],
 	"provisioners": [
