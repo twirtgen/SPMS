@@ -6,10 +6,11 @@ app = Flask(__name__)
 
 @app.route('/binding/<plugin_name>', methods=['GET'])
 def get_binding(plugin_name):
-    if plugin_name not in listdir('tmp'):
+    plugin = '%s.tar.bz2' % plugin_name
+    if plugin not in listdir('tmp'):
         return ('', 404)
 
-    with open('tmp/%s' % plugin_name, 'rb') as fd:
+    with open('tmp/%s' % plugin, 'rb') as fd:
         content = fd.read()
 
     print('<%s> asked' % plugin_name) 
