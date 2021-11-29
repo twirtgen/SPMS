@@ -41,6 +41,7 @@ def render_containerfiles(context, kind):
 
         # Set base_layer of the µservice
         ctx['base_layer'] = '%s_layer' % config['layer'] if config['layer'] in BASE_LAYERS else ''
+        ctx['pkg_manager'] = 'DEBIAN_FRONTEND=noninteractive apt-get install -y' if 'ubuntu' in config['layer'] else 'apk add'
 
         # Set container CMD
         ctx['cmd'] = ''

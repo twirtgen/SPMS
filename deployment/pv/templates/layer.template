@@ -1,7 +1,7 @@
 FROM {% if registry %}{{ registry }}/{% endif %}{{ base_layer }}
 
 {% if packages %} 
-RUN apk add {{packages}}
+RUN  {{pkg_manager}} {{packages}}
 {% endif %}
 
 COPY {{ service_dir }}/requirements.txt .

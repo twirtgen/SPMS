@@ -1,11 +1,16 @@
+{% set layers = [] %}
 {% for service in services %}
 {% set layer = "%s_layer%s" % (service, tag) %}
 {% set dir = "%s/common_layers/%s" % (src_dir, service) %}
-build_{{ service }}_service:
+{% set rule = "build_%s_service" % service %}
+{{ layers.append(rule)|default("",True) }}
+{{ rule }}:
 	tar -cjf context.tar.bz2 -C {{dir}} .
 	curl --unix-socket /var/run/docker.sock -H "Content-Type:application/tar" --data-binary '@context.tar.bz2' "http://localhost/v1.41/build?t={{layer}}{% if registry %}&t={{registry}}/{{layer}}{% endif %}&dockerfile={{layer}}.containerfile"
 	{% if registry %}	curl --unix-socket /var/run/docker.sock -X POST -H  "X-Registry-Auth: {}" "http://localhost/v1.41/images/{{registry}}/{{layer}}/push"{% endif %}
 
 {% endfor %}
 
-build: build_python_service build_api_service build_crypto_service build_stack_render_service
+#build: build_python_service build_api_service build_crypto_service build_stack_render_service
+build: {{ layers|join(' ') }}
+
