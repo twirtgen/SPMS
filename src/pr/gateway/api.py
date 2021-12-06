@@ -18,7 +18,8 @@ def get_binding(plugin_name):
 
 @app.route('/failure/<plugin_name>', methods=['POST'])
 def post_failure(plugin_name):
-    if plugin_name not in listdir('tmp'):
+    plugin = '%s.tar.bz2' % plugin_name
+    if plugin not in listdir('tmp'):
         return ('', 404)
 
     print('failure received for <%s>' % plugin_name)
