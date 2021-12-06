@@ -76,11 +76,11 @@ def forward_to_pr(result: dict, binding_name: str, verifier_id: str) -> None:
             # Forward failure data to the PR_GATEWAY
             r = requests.post('http://%s/failure/%s' % (PR_GATEWAY, binding_name), json=payload)
             if r.status_code != 200:
-                pass
+                logger.log(logging.ERROR, 'failed to send <%s> result to pr_gateway, status <%i>' % (verifier_id, r.status_code))
                 # TODO : handle error
     except KeyError:
         # TODO : handle error
-        pass
+        logger.log(logging.ERROR, 'failed result from <%s> badly formated.' % verifier_id)
 
 @app.route('/result/<verifier_id>/<binding_name>', methods=['POST'])
 def add_result(verifier_id, binding_name):

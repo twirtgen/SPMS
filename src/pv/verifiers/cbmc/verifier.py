@@ -6,7 +6,6 @@ import docker
 # init docker client
 client = docker.DockerClient(base_url='unix://var/run/docker.sock', version='auto')
 REGISTRY = os.environ.get('REGISTRY', 'localhost:5000/')
-print(REGISTRY)
 
 def verify(tmpdir: str, plugin_name: str) -> str:
 

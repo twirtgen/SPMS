@@ -9,9 +9,9 @@ client = docker.DockerClient(base_url='unix://var/run/docker.sock', version='aut
 BMC = os.environ['BMC'] if 'BMC' in os.environ else 'mono'
 REGISTRY = os.environ.get('REGISTRY', 'localhost:5000/')
 
-def verify(tmpdir: str, plugin_name: str) -> str:
+def verify(tmpdir: str, plugin_name: str) -> dict:
 
-    plugin_dir = '%s/%s' % (tmpdir, plugin_name)
+    plugin_dir = os.path.join(tmpdir, plugin_name)
     failure = {}
 
     for pluglet in [i[:-2] for i in os.listdir(plugin_dir) if i[len(i)-2:] == '.c']:
@@ -33,6 +33,8 @@ def verify(tmpdir: str, plugin_name: str) -> str:
             if not unsat:
                 failure[pluglet] = log
                 print(log)
+            else:
+                print('<%s> successfully verified.' % pluglet)
 
         except docker.errors.ContainerError as e:
             error_log = '[ERROR] <%s> : <%s> : %s' % (e.image, e.command, e.stderr.decode('utf-8'))
