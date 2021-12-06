@@ -4,6 +4,7 @@ from re import sub
 
 import docker
 
+REGISTRY = os.environ.get('REGISTRY', 'localhost:5000/')
 # init docker client
 client = docker.DockerClient(base_url='unix://var/run/docker.sock', version='auto')
 
@@ -17,7 +18,7 @@ def verify(tmpdir: str, plugin_name: str) -> str:
         try:
             # TODO : mount PQUIC somewhere
             result = client.containers.run(
-                image='terminator2_llvm-3.4_compile_service',
+                image='%sterminator2_llvm-3.4_compile_service' % REGISTRY,
                 command='%s/%s' % (plugin_name, pluglet),
                 volumes={
                     tmpdir: {'bind': '/mount', 'type': 'rw'},
@@ -30,10 +31,12 @@ def verify(tmpdir: str, plugin_name: str) -> str:
             print(error_log)
             continue
 
+        print("LLVM-3.4 successfully finished")
+
         # convert LLVM IR bitcode to T2 instructions
         try:
             result = client.containers.run(
-                image='terminator2_llvm2kittel_service',
+                image='%sterminator2_llvm2kittel_service' % REGISTRY,
                 command=pluglet,
                 volumes={plugin_dir: {'bind': '/mount', 'type': 'rw'}}
             )
@@ -42,6 +45,8 @@ def verify(tmpdir: str, plugin_name: str) -> str:
             failure[pluglet] = error_log
             print(error_log)
             continue
+
+        print("LLVM2KITTEL successfully finished")
 
         # perform some cleanup of the T2 instructions file. Sometimes LLVM2KITTEL produces files
         # with only one comment which means the program trivially ends. T2 is unable to handle 
@@ -52,6 +57,7 @@ def verify(tmpdir: str, plugin_name: str) -> str:
             new_content = sub('^///\*\*\* [0-9a-z_]* \*\*\*///\n', '', content)
 
         if not new_content.isspace():
+            print('LLVM2KITTEL output is empty after cleanup.')
             continue
 
         with open('%s/%s.t2' % (plugin_dir, pluglet), 'w') as fp:
@@ -60,7 +66,7 @@ def verify(tmpdir: str, plugin_name: str) -> str:
         # execute T2 on previously generated instructions
         try:
             result = client.containers.run(
-                image='terminator2_t2_service',
+                image='%sterminator2_t2_service' % REGISTRY,
                 command=pluglet,
                 volumes={plugin_dir: {'bind': '/mount', 'type': 'rw'}}
             )
@@ -75,5 +81,7 @@ def verify(tmpdir: str, plugin_name: str) -> str:
             failure[pluglet] = error_log
             print(error_log)
             continue
+
+        print("T2 successfully finished")
 
     return None if len(failure) == 0 else failure
