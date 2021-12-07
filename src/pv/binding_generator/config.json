@@ -1,4 +1,4 @@
 {
 	"layer": "ubuntu_api",
-	"packages": ["clang", "make", "gcc-multilib"]
+	"packages": ["clang", "make", "gcc-multilib", "llvm"]
 }
