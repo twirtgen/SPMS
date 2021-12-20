@@ -69,7 +69,9 @@
 			"type": "shell",
 			"inline_shebang": "/bin/sh -xe",
 			"inline": [
-				"echo {{user `hostname`}} > /etc/hostname", 
+				"echo {{user `hostname`}} > /etc/hostname",
+				"rc-service docker restart && sleep 2",
+				"docker pull 10.20.3.5:5000/stack_render_layer",
 				"docker run -v $(pwd):/output -v $(pwd)/pv.config:/tmp/stack.config \"{{user `registry`}}\"/stack_render_layer",
 				"docker swarm init"
 			]
