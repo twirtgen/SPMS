@@ -279,17 +279,9 @@ resource "null_resource" "pv1-build" {
   depends_on = [libvirt_domain.spms-build_pipe-domain]
   provisioner "local-exec" {
     command=<<EOF
-      #! /bin/bash
-      if [[ ! -d /tmp/spms/imgs/pv1 ]]
-      then
-        while
-          CONTAINERS=$(curl 10.20.3.5:5000/v2/_catalog -s | jq -r '.repositories |@sh' | wc -w)
-          [[ $CONTAINERS -lt 8 ]] || break
-            sleep 20
-        do true; done
-
+	#! /bin/bash
         cd pv/packer
-        packer build -var root_pass=${var.root_pass} -var hostname=pv1 build.json
+        packer build -var root_pass=${var.root_pass} -var hostname=pv1 -var registry=10.20.3.5:5000 build.json
       fi
     EOF
   }

@@ -70,13 +70,9 @@
 			"inline_shebang": "/bin/sh -xe",
 			"inline": [
 				"echo {{user `hostname`}} > /etc/hostname", 
-				"apk add bash jq"
+				"docker run -v $(pwd):/output -v $(pwd)/pv.config:/tmp/stack.config \"{{user `registry`}}\"/stack_render_layer",
+				"docker swarm init"
 			]
-		},
-		{
-			"type": "shell",
-			"inline_shebang": "/bin/bash -x",
-			"script": "bootstrap.sh"
 		}
 	],
 	"post-processors": [
