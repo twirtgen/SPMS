@@ -1,19 +1,29 @@
 version: '3'
 services:
-  binding_manager:
-    image: binding_manager_service
+
+  binding_generator:
+    image: {{registry}}binding_generator_service
     depends_on:
       - "logger"
+    networks:
+      - net
+
+  binding_manager:
+    image: {{registry}}binding_manager_service
+    depends_on:
+      - "logger"
+      - "binding_generator"
     environment:
       VERIFIERS: '{{verifier_list}}'
       {% if exp %}LOGICAL_EXP: '{{exp}}' {% endif %}
       LOGGER_ADDR: logger:80
       PR_GATEWAY: pr_gateway:80
+      BINDING_GENERATOR: binding_generator:80
     networks:
       - net
 
   mt_manager:
-    image: mt_manager_service
+    image: {{registry}}mt_manager_service
     volumes:
       - /dev/shm/pv.key:/dev/shm/pv.key
       - ./pv.crt:/dev/shm/pv.crt
@@ -27,10 +37,10 @@ services:
       - net
 
   user_gateway:
-    image: user_gateway_service
+    image: {{registry}}user_gateway_service
     ports:
 # in future, to replace with 443
-      - 3000:3000
+      - 80:80
     environment:
       BM_ADDR: binding_manager:80
       MT_ADDR: mt_manager:80
@@ -42,7 +52,7 @@ services:
       - net
 
   pr_gateway:
-    image: pr_gateway_service
+    image: {{registry}}pr_gateway_service
     volumes:
       - ./pv.config:/pv.config
       - /dev/shm/pv.key:/dev/shm/pv.key
@@ -50,6 +60,7 @@ services:
       - ./root_ca.crt:/dev/shm/root_ca.crt
     environment:
       BM_ADDR: binding_manager:80
+      PR_ADDR: 10.20.3.50
     depends_on:
       - "binding_manager"
       - "logger"
@@ -57,15 +68,20 @@ services:
       - net
 
   logger:
-    image: logger_service
+    image: {{registry}}logger_service
     networks:
       - net
 {% for verifier, type in verifiers.items() %}
   {{verifier}}:
-    image: {{type}}_verifier
+    image: {{registry}}{{type}}_verifier:latest
     environment:
       VERIFIER_ID: {{verifier}}
       BM_ADDR: binding_manager:80
+      REGISTRY: {{registry}}
+      LOGGER_ADDR: logger:80
+    volumes:
+      - /dev/shm:/dev/shm
+      - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - "binding_manager"
     networks:
@@ -73,4 +89,3 @@ services:
 {% endfor %}
 networks:
   net:
-

@@ -19,6 +19,14 @@ if config['type'] == 'pv':
         pass
 
     try:
+        context['registry'] = config['registry']
+        if not context['registry'].endswith('/'):
+            context['registry'] += '/'
+    except KeyError:
+        print('Registry not found')
+        exit(1)
+
+    try:
         context['verifiers'] = {key: value['verifier'] for key, value in config['verifiers'].items()}
         context['verifier_list'] = dumps(list(config['verifiers'].keys()))
     except KeyError:
@@ -37,5 +45,3 @@ try:
 except TemplateNotFound:
     print('Template not found <%s>' % path)
     exit(1)
-
-
