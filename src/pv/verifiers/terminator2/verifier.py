@@ -57,7 +57,7 @@ def verify(logger, tmpdir: str, plugin_name: str) -> str:
             content = fp.read()
             new_content = sub('^///\*\*\* [0-9a-z_]* \*\*\*///\n', '', content)
 
-        if not new_content.isspace():
+        if new_content.isspace() or new_content == '':
             logger.info('<llvm2kittel> <%s:%s> Output is empty after cleanup.' % (plugin_name, pluglet))
             continue
 
@@ -74,7 +74,7 @@ def verify(logger, tmpdir: str, plugin_name: str) -> str:
                 volumes={plugin_dir: {'bind': '/mount', 'type': 'rw'}}
             )
 
-            if result != b'Termination proof succeeded\n':
+            if not result.contains(b'Termination proof succeeded\n'):
                 failure[pluglet] = result.decode('ascii')
                 logger.error('<terminator2> <%s:%s> %s' % (plugin_name, pluglet, failure[pluglet]))
             else:
@@ -84,6 +84,7 @@ def verify(logger, tmpdir: str, plugin_name: str) -> str:
             error_log = '<%s> <%s:%s> %s' % (e.image, plugin_name, e.command, e.stderr.decode('utf-8'))
             failure[pluglet] = error_log
             logger.error(error_log)
+            logger.error(new_content)
             continue
 
     return None if len(failure) == 0 else failure
